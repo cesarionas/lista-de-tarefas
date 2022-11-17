@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import ListaTarefasContext from "./services/ListaTarefas/ListaTarefasContext";
+import ListaTarefasPage from "./components/ListaTarefasPage";
+import { listaTarefasContextBuilder } from "./services/ListaTarefas/ListaTarefasService";
 
 function App() {
+  const controleDeTarefas = listaTarefasContextBuilder(useState([]));
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App">
+        <ListaTarefasContext.Provider value={controleDeTarefas}>
+          <ListaTarefasPage />
+        </ListaTarefasContext.Provider>
+      </div>
     </div>
   );
 }
